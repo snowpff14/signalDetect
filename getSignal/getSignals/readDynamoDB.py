@@ -45,7 +45,7 @@ class ReadDynamoDB():
             outputDict['ROR']=res['ROR']
             outputDict['PRR']=res['PRR']
             outputDict['PRR_signal']=res['PRR_signal']
-            outputDict['ROR_signal']=res['ROR_signal']
+            # outputDict['ROR_signal']=res['ROR_signal']
             outputList.append(outputDict)
         return outputList
 

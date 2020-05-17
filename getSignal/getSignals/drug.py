@@ -5,8 +5,8 @@ import traceback
 from boto3.dynamodb.conditions import Key, Attr
 from readDynamoDB import ReadDynamoDB
 
-tableName = os.environ['table']
-
+# tableName = os.environ['table']
+tableName = 'signal-datas'
 readDynamoDB=ReadDynamoDB()
 
 def lambda_handler(event, context):
