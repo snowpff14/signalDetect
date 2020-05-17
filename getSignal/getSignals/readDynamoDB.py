@@ -7,28 +7,27 @@ from boto3.dynamodb.conditions import Key, Attr
 
 dynamodb = boto3.resource('dynamodb')
 
-tableName = os.environ['table']
 
 
 
 class ReadDynamoDB():
 
 
-    def drugNameSearch(self,drugName):
+    def drugNameSearch(self,drugName,tableName):
         keyCondition=Key('DrugName').eq(drugName)
-        return self.readDatas(keyCondition)
+        return self.readDatas(keyCondition,tableName)
 
 
-    def aeNameSearch(self,aeName):
+    def aeNameSearch(self,aeName,tableName):
         keyCondition=Key('AeName').eq(aeName)
-        return self.readDatas(keyCondition)
+        return self.readDatas(keyCondition,tableName)
 
-    def drugAeNameSearch(self,drugname,aeName):
+    def drugAeNameSearch(self,drugname,aeName,tableName):
         keyCondition=Key('DrugName').eq(drugname) & Key('AeName').eq(aeName)
-        return self.readDatas(keyCondition)
+        return self.readDatas(keyCondition,tableName)
 
 
-    def readDatas(self, keyCondition):
+    def readDatas(self, keyCondition,tableName):
 
         try:
             table = dynamodb.Table(tableName)
