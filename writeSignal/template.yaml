@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  writeSignalDatas
+
+  Sample SAM Template for writeSignalDatas
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  WriteSignalDatasFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: writeSignalDatas/
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Policies: AWSLambdaExecute
+      Events:
+        WriteSignalDatasEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref SignalDataBucket
+            Events: s3:ObjectCreated:*
+  SignalDataBucket:
+    Type: AWS::S3::Bucket
+
